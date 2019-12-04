@@ -22,6 +22,9 @@
 
 
         public function index(){
+            if ($this->session->userdata('user')) {
+            redirect('user');
+            }
             
             $this->form_validation->set_rules('user','Username atau Email','required|trim',[
                 'required' => 'Harus diisi'
@@ -43,15 +46,15 @@
         private function _login(){
             $user = $this->input->post('user');
             $password = $this->input->post('password');
-
-            $cekUsername = $this->user_model->getUsers('users',['username' => $this->rot13($user)]);
-            $cekEmail = $this->user_model->getUsers('users',['email' => $this->rot13($user)]);
+            $id = $this->user_model->getId('users',$this->rot13($user));
+            //print_r($id);die;
             $cekPassword = $this->user_model->getUsers('users',['password' => $this->rot13($password)]);
 
-            if ($cekUsername || $cekEmail) {
+            if ($id) {
                 if ($cekPassword) {
                     $data = [
-                        'user' => $user
+                        'user' => $user,
+                        'id'    => $id['id']
                     ];
                     $this->session->set_userdata($data);
                     redirect('user');
@@ -154,10 +157,16 @@
                     Registrasi <b>BERHASIL</b>, silahkan <b>LOGIN</b> ! </div>');
                     redirect('auth');
                 }
-                
-                
             }
-            
+        }
+
+        public function logout(){
+        $this->session->unset_userdata('user');
+        $this->session->unset_userdata('id');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Logout berhasil! </div>');
+            redirect('auth');
         }
 
 

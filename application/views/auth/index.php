@@ -18,11 +18,13 @@
                         <?= $this->session->flashdata('message'); ?>
                         <form class="user" action="auth" method="post">
                             <div class="form-group">
-                            <input type="text" name="user" class="form-control form-control-user" id="user" placeholder="Username atau Email">
+                            <input type="text" name="user" class="form-control form-control-user" id="user" placeholder="Username atau Email" value="<?= set_value('user'); ?>">
+                            <?= form_error('user', '<div class="text-sm text-danger">', '</div>'); ?>
                             </div>
                             <div class="form-group">
                             <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
                             </div>
+                            <?= form_error('password', '<div class="text-sm text-danger">', '</div>'); ?>
                             <button type="submit" class="btn btn-primary btn-user btn-block">
                             Login
                             </button>

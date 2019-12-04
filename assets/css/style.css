@@ -3,3 +3,8 @@
 	background-size: cover;
 	background-attachment: fixed;
 }
+
+.back {
+	background-image: url("../img/soekarno.jpg");
+	background-size: cover;
+}

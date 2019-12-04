@@ -4,31 +4,9 @@
 
             <!-- Page Heading -->
             <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
+            <?= $this->session->flashdata('message'); ?>
             
-            <div class="jumbotron jumbotron-fluid back">
-                <div class="container">
-                    <h1 class="display-4 text-white text-center">Selamat Datang</h1>
-                    <p class="text-white text-center">Tempat mencari jurnal terpercaya</p>
-                    <!-- Form cari -->
-                <div class="row">
-                    <div class="col-8 offset-2">
-                    <form action="" method="post">
-                    <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Cari Jurnal" name="keyword">
-                    <div class="input-group-append">
-                        <button type="submit" class="btn btn-success"><i class="fas fa-fw fa-search"></i></button>
-                    </div>
-                    </div>
-                </form>
-                    </div>
-                </div>
-                <!-- akhir form cari -->
-                </div>
-            </div>
-            <?php if(!$jurnal) : ?>
-                <!-- tidak ada jurnal -->
-            <?php else : ?>
-            <div class="row">
+        <div class="row">
             <?php foreach($jurnal as $j) : ?>
             <div class="col-md-3">
             <div class="card" style="width: 18rem;">
@@ -36,16 +14,14 @@
                 <div class="card-body">
                     <h5 class="card-title"><?= $j['title'] ?></h5>
                     <p class="card-text"><?= $j['tahun'] ?></p>
+                    <p class="card-text"><?= date($j['create_at']) ?></p>
                     <a href="<?= base_url('user/download/').$j['id']; ?>" class="btn btn-primary card-link"><i class="fas fa-fw fa-file-download"></i> Download</a>
                             <a href="#" class="card-link" data-toggle="modal" data-target="#exampleModal<?= $j['id']; ?>"><i class="fas fa-fw fa-eye"></i> Preview</a>
                 </div>
             </div>
             </div>
             <?php endforeach; ?>
-            </div>
-            <?php endif; ?>
-
-            </div>
+        </div>
             <!-- /.container-fluid -->
             <?php foreach($jurnal as $j) : ?>
             <div class="modal fade bd-example-modal-lg" id="exampleModal<?= $j['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

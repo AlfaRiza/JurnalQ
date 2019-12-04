@@ -7,14 +7,14 @@
             <div class="sidebar-brand-icon">
             <i class="fas fa-fw fa-journal-whills"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+            <div class="sidebar-brand-text mx-3">JurnalQ</div>
         </a>
 
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
 
         <div class="mx-auto mt-5">
-            <img class="img-profile rounded-circle" src="<?= base_url('assets/img/profile/').$user['image'] ?>" alt="">
+            <img class="img-profile rounded-circle" width="150px" src="<?= base_url('assets/img/profile/').$user['image'] ?>" alt="">
             <p class="text-center mt-2"><?= $user['nama']; ?></p>
         </div>
 
@@ -24,7 +24,7 @@
         <?php }else{ ?>
             <li class="nav-item">
         <?php } ?>
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="<?= base_url('user'); ?>">
             <i class="fas fa-fw fa-home"></i>
             <span>Home</span></a>
         </li>
@@ -79,7 +79,7 @@
         <?php } ?>
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Password</h6>
-                <a class="collapse-item" href="cards.html">Change Password</a>
+                <a class="collapse-item" href="<?= base_url('user/ChangePassword'); ?>">Change Password</a>
             </div>
             </div>
         </li>
@@ -93,7 +93,7 @@
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <?php if($title == 'Akun') { ?>
+        <?php if($title == 'My Jurnal') { ?>
             <li class="nav-item active">
             <a class="nav-link" href="#" data-toggle="collapse" data-target="#jurnal" aria-expanded="true" aria-controls="jurnal">
             <i class="fas fa-fw fa-book"></i>
@@ -110,18 +110,32 @@
         <?php } ?>
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">My Jurnal</h6>
-                <a class="collapse-item" href="cards.html">My Jurnal</a>
+                <a class="collapse-item" href="<?= base_url('user/Jurnal'); ?>">My Jurnal</a>
+                <a class="collapse-item" href="<?= base_url('user/AddJurnal'); ?>">Tambah Jurnal</a>
             </div>
             </div>
         </li>
 
+        <hr class="sidebar-divider">
+
+        <div class="">
+        
+        </div>
+
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
+        <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('auth/logout'); ?>" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-fw fa-sign-out-alt"></i>
+                    <span>Logout</span></a>
+        </li>
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
+
+        
 
         </ul>
         <!-- End of Sidebar -->
@@ -131,3 +145,20 @@
 
         <!-- Main Content -->
         <div id="content">
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            </div>
+            <div class="modal-body">Jika anda logout maka akan kembali ke halaman login</div>
+            <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Kembali</button>
+            <a class="btn btn-primary" href="<?= base_url('auth/logout'); ?>">Logout</a>
+            </div>
+        </div>
+        </div>
+    </div>
